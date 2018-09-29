@@ -8,9 +8,24 @@ ArduinoMock* arduinoMockInstance() {
   return arduinoMock;
 }
 
+ArduinoMock* arduinoMockInstance(ArduinoMock*& mock) {
+  if (mock) {
+    arduinoMock = mock;
+  }
+  return arduinoMock;
+}
+
 void releaseArduinoMock() {
-  if(arduinoMock) {
+  if (arduinoMock) {
     delete arduinoMock;
+    arduinoMock = NULL;
+  }
+}
+
+void releaseArduinoMock(bool clean) {
+  if(arduinoMock) {
+    if (clean)
+      delete arduinoMock;
     arduinoMock = NULL;
   }
 }

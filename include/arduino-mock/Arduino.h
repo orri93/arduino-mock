@@ -77,51 +77,53 @@ void loop(void);
 #define F(x) (x)
 
 class ArduinoMock {
-  private:
+  protected:
     unsigned long  currentMillis;
 
   public:
     ArduinoMock();
 
-    unsigned long getMillis() {
+    virtual unsigned long getMillis() {
       return currentMillis;
     };
 
-    void setMillisRaw (unsigned long milliseconds) {
+    virtual void setMillisRaw(unsigned long milliseconds) {
       currentMillis = milliseconds;
     };
-    void setMillisSecs(unsigned long seconds) {
+    virtual void setMillisSecs(unsigned long seconds) {
       setMillisRaw(seconds *      1000);
     };
-    void setMillisMins(unsigned long minutes) {
+    virtual void setMillisMins(unsigned long minutes) {
       setMillisRaw(minutes *   60 * 1000);
     };
-    void setMillisHrs (float         hours)   {
-      setMillisRaw(hours  * 60 * 60 * 1000);
+    virtual void setMillisHrs(float         hours)   {
+      setMillisRaw(((unsigned long)hours) * 60 * 60 * 1000);
     };
 
-    void addMillisRaw (unsigned long milliseconds) {
+    virtual void addMillisRaw(unsigned long milliseconds) {
       currentMillis += milliseconds;
     };
-    void addMillisSecs(unsigned long seconds) {
+    virtual void addMillisSecs(unsigned long seconds) {
       addMillisRaw(seconds *      1000);
     };
-    void addMillisMins(unsigned long minutes) {
+    virtual void addMillisMins(unsigned long minutes) {
       addMillisRaw(minutes *   60 * 1000);
     };
-    void addMillisHrs (float         hours)   {
-      addMillisRaw(hours  * 60 * 60 * 1000);
+    virtual void addMillisHrs(float         hours)   {
+      addMillisRaw(((unsigned long)hours) * 60 * 60 * 1000);
     };
 
-    MOCK_METHOD2(pinMode, void (uint8_t, uint8_t));
-    MOCK_METHOD2(analogWrite, void (uint8_t, int));
-    MOCK_METHOD2(digitalWrite, void (uint8_t, uint8_t));
-    MOCK_METHOD1(digitalRead, int (int));
-    MOCK_METHOD1(analogRead, int (int));
-    MOCK_METHOD1(delay, void (int));
-    MOCK_METHOD0(millis, unsigned long ());
+    virtual MOCK_METHOD2(pinMode, void(uint8_t, uint8_t));
+    virtual MOCK_METHOD2(analogWrite, void(uint8_t, int));
+    virtual MOCK_METHOD2(digitalWrite, void(uint8_t, uint8_t));
+    virtual MOCK_METHOD1(digitalRead, int(int));
+    virtual MOCK_METHOD1(analogRead, int(int));
+    virtual MOCK_METHOD1(delay, void(int));
+    virtual MOCK_METHOD0(millis, unsigned long());
 };
 ArduinoMock* arduinoMockInstance();
+ArduinoMock* arduinoMockInstance(ArduinoMock*& mock);
 void releaseArduinoMock();
+void releaseArduinoMock(bool clean);
 
 #endif // ARDUINO_H

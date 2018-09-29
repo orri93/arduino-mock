@@ -14,32 +14,32 @@
 
 class SerialMock {
   public:
-    MOCK_METHOD0(getWriteError, int());
-    MOCK_METHOD0(clearWriteError, void());
-    MOCK_METHOD1(write, size_t(uint8_t));
-    MOCK_METHOD1(write, size_t(const char *str));
-    MOCK_METHOD2(write, size_t(const uint8_t *buffer, size_t size));
+    virtual MOCK_METHOD0(getWriteError, int());
+    virtual MOCK_METHOD0(clearWriteError, void());
+    virtual MOCK_METHOD1(write, size_t(uint8_t));
+    virtual MOCK_METHOD1(write, size_t(const char *str));
+    virtual MOCK_METHOD2(write, size_t(const uint8_t *buffer, size_t size));
 
-    MOCK_METHOD1(print, size_t(const char[]));
-    MOCK_METHOD1(print, size_t(char));
-    MOCK_METHOD2(print, size_t(unsigned char, int));
-    MOCK_METHOD2(print, size_t(int, int));
-    MOCK_METHOD2(print, size_t(unsigned int, int));
-    MOCK_METHOD2(print, size_t(long, int));
-    MOCK_METHOD2(print, size_t(unsigned long, int));
-    MOCK_METHOD2(print, size_t(double, int));
+    virtual MOCK_METHOD1(print, size_t(const char[]));
+    virtual MOCK_METHOD1(print, size_t(char));
+    virtual MOCK_METHOD2(print, size_t(unsigned char, int));
+    virtual MOCK_METHOD2(print, size_t(int, int));
+    virtual MOCK_METHOD2(print, size_t(unsigned int, int));
+    virtual MOCK_METHOD2(print, size_t(long, int));
+    virtual MOCK_METHOD2(print, size_t(unsigned long, int));
+    virtual MOCK_METHOD2(print, size_t(double, int));
 
-    MOCK_METHOD1(println, size_t(const char[]));
-    MOCK_METHOD1(println, size_t(char));
-    MOCK_METHOD2(println, size_t(int, int));
-    MOCK_METHOD0(println, size_t(void));
+    virtual MOCK_METHOD1(println, size_t(const char[]));
+    virtual MOCK_METHOD1(println, size_t(char));
+    virtual MOCK_METHOD2(println, size_t(int, int));
+    virtual MOCK_METHOD0(println, size_t(void));
 
-    MOCK_METHOD1(begin, uint8_t(uint16_t));
+    virtual MOCK_METHOD1(begin, uint8_t(uint16_t));
 
-    MOCK_METHOD0(available, uint8_t());
-    MOCK_METHOD0(read, uint8_t());
+    virtual MOCK_METHOD0(available, uint8_t());
+    virtual MOCK_METHOD0(read, uint8_t());
 
-    MOCK_METHOD0(flush, void());
+    virtual MOCK_METHOD0(flush, void());
 
     /* Not implemented yet
     MOCK_METHOD2(println, size_t(unsigned char, int));
