@@ -104,7 +104,8 @@ class Serial_ {
 extern Serial_ Serial;
 
 SerialMock* serialMockInstance();
+SerialMock* serialMockInstance(SerialMock*& mock);
 void releaseSerialMock();
-
+void releaseSerialMock(bool clean);
 
 #endif // SERIAL_H

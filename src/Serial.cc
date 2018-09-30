@@ -10,9 +10,24 @@ SerialMock* serialMockInstance() {
   return gSerialMock;
 }
 
+SerialMock* serialMockInstance(SerialMock*& mock) {
+  if (mock) {
+    gSerialMock = mock;
+  }
+  return gSerialMock;
+}
+
 void releaseSerialMock() {
   if(gSerialMock) {
     delete gSerialMock;
+    gSerialMock = NULL;
+  }
+}
+
+void releaseSerialMock(bool clean) {
+  if (gSerialMock) {
+    if (clean)
+      delete gSerialMock;
     gSerialMock = NULL;
   }
 }
