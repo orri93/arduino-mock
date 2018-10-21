@@ -188,7 +188,7 @@ size_t Serial_::println(unsigned long num, int base) {
 
 size_t Serial_::println(double num, int digits) {
   assert (gSerialMock != NULL);
-  return gSerialMock->println(num, digits);
+  return gSerialMock->println((int)num, digits);
 }
 
 size_t Serial_::println(void) {

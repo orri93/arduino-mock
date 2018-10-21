@@ -33,28 +33,30 @@ extern WiFi_ WiFi;
 
 class WiFiMock {
   public:
-    MOCK_METHOD0(on, void());
-    MOCK_METHOD0(off, void());
-    MOCK_METHOD0(connect, void());
-    MOCK_METHOD0(disconnect, void());
-    MOCK_METHOD0(connecting, bool());
-    MOCK_METHOD0(ready, bool());
-    MOCK_METHOD0(listen, void());
-    MOCK_METHOD0(listening, bool());
-    MOCK_METHOD0(setCredentials, void());
-    MOCK_METHOD0(clearCredentials, bool());
-    MOCK_METHOD0(hasCredentials, bool());
-    MOCK_METHOD0(macAddress, uint8_t());
-    MOCK_METHOD0(SSID, char * ());
-    MOCK_METHOD0(RSSI, int());
-    MOCK_METHOD1(ping, void(char*));
-    MOCK_METHOD2(ping, void(char*, uint8_t));
-    MOCK_METHOD0(localIP, char * ());
-    MOCK_METHOD0(subnetMask, char * ());
-    MOCK_METHOD0(gatewayIP, char * ());
+    virtual MOCK_METHOD0(on, void());
+    virtual MOCK_METHOD0(off, void());
+    virtual MOCK_METHOD0(connect, void());
+    virtual MOCK_METHOD0(disconnect, void());
+    virtual MOCK_METHOD0(connecting, bool());
+    virtual MOCK_METHOD0(ready, bool());
+    virtual MOCK_METHOD0(listen, void());
+    virtual MOCK_METHOD0(listening, bool());
+    virtual MOCK_METHOD0(setCredentials, void());
+    virtual MOCK_METHOD0(clearCredentials, bool());
+    virtual MOCK_METHOD0(hasCredentials, bool());
+    virtual MOCK_METHOD0(macAddress, uint8_t());
+    virtual MOCK_METHOD0(SSID, char * ());
+    virtual MOCK_METHOD0(RSSI, int());
+    virtual MOCK_METHOD1(ping, void(char*));
+    virtual MOCK_METHOD2(ping, void(char*, uint8_t));
+    virtual MOCK_METHOD0(localIP, char * ());
+    virtual MOCK_METHOD0(subnetMask, char * ());
+    virtual MOCK_METHOD0(gatewayIP, char * ());
 };
 
 WiFiMock* WiFiMockInstance();
+WiFiMock* WiFiMockInstance(WiFiMock*& mock);
 void releaseWiFiMock();
+void releaseWiFiMock(bool clean);
 
 #endif

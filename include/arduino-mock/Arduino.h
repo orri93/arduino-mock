@@ -40,7 +40,7 @@ extern "C" {
 #define FALLING 2
 #define RISING 3
 
-typedef uint8_t boolean;
+typedef bool boolean;
 typedef uint8_t byte;
 
 void init(void);

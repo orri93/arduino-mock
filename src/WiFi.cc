@@ -1,9 +1,17 @@
 #include "arduino-mock/WiFi.h"
 
 static WiFiMock* p_WiFiMock = NULL;
+
 WiFiMock* WiFiMockInstance() {
   if (!p_WiFiMock) {
     p_WiFiMock = new WiFiMock();
+  }
+  return p_WiFiMock;
+}
+
+WiFiMock* WiFiMockInstance(WiFiMock*& mock) {
+  if (mock) {
+    p_WiFiMock = mock;
   }
   return p_WiFiMock;
 }
@@ -14,6 +22,15 @@ void releaseWiFiMock() {
     p_WiFiMock = NULL;
   }
 }
+
+void releaseWiFiMock(bool clean) {
+  if (p_WiFiMock) {
+    if (clean)
+      delete p_WiFiMock;
+    p_WiFiMock = NULL;
+  }
+}
+
 
 void WiFi_::on() {
   p_WiFiMock->on();
