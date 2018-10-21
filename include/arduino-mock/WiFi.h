@@ -6,8 +6,12 @@
 #include <gmock/gmock.h>
 #include <stdint.h>
 
+typedef int wl_status_t;
+
 class WiFi_ {
   public:
+    wl_status_t begin(const char* ssid, const char *passphrase);
+    uint8_t status();
     void on();  // turns on WiFi module
     void off();  // turns off WiFi module
     void connect();  // Attempts to connect to the WiFi network
@@ -33,6 +37,9 @@ extern WiFi_ WiFi;
 
 class WiFiMock {
   public:
+
+    virtual MOCK_METHOD2(begin, wl_status_t(const char* ssid, const char *passphrase));
+    virtual MOCK_METHOD0(status, uint8_t());
     virtual MOCK_METHOD0(on, void());
     virtual MOCK_METHOD0(off, void());
     virtual MOCK_METHOD0(connect, void());
