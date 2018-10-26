@@ -31,11 +31,11 @@ void releaseWiFiMock(bool clean) {
   }
 }
 
-wl_status_t begin(const char* ssid, const char *passphrase) {
+wl_status_t WiFi_::begin(const char* ssid, const char *passphrase) {
   return p_WiFiMock->begin(ssid, passphrase);
 }
 
-uint8_t status() {
+wl_status_t WiFi_::status() {
   return p_WiFiMock->status();
 }
 

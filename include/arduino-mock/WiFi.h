@@ -6,7 +6,7 @@
 #include <gmock/gmock.h>
 #include <stdint.h>
 
-typedef enum {
+enum wl_status_t {
   WL_NO_SHIELD = 255,   // for compatibility with WiFi Shield library
   WL_IDLE_STATUS = 0,
   WL_NO_SSID_AVAIL = 1,
@@ -15,7 +15,7 @@ typedef enum {
   WL_CONNECT_FAILED = 4,
   WL_CONNECTION_LOST = 5,
   WL_DISCONNECTED = 6
-} wl_status_t;
+};
 
 class WiFi_ {
   public:

@@ -17,10 +17,12 @@ class SerialMock {
     virtual MOCK_METHOD0(getWriteError, int());
     virtual MOCK_METHOD0(clearWriteError, void());
     virtual MOCK_METHOD1(write, size_t(uint8_t));
-    virtual MOCK_METHOD1(write, size_t(const char *str));
+    virtual MOCK_METHOD1(write, size_t(std::string str));
+    virtual size_t write(const char *str) { return write(std::string(str)); }
     virtual MOCK_METHOD2(write, size_t(const uint8_t *buffer, size_t size));
 
-    virtual MOCK_METHOD1(print, size_t(const char[]));
+    virtual MOCK_METHOD1(print, size_t(std::string str));
+    virtual size_t print(const char* s) { return print(std::string(s)); }
     virtual MOCK_METHOD1(print, size_t(char));
     virtual MOCK_METHOD2(print, size_t(unsigned char, int));
     virtual MOCK_METHOD2(print, size_t(int, int));
@@ -29,7 +31,8 @@ class SerialMock {
     virtual MOCK_METHOD2(print, size_t(unsigned long, int));
     virtual MOCK_METHOD2(print, size_t(double, int));
 
-    virtual MOCK_METHOD1(println, size_t(const char[]));
+    virtual MOCK_METHOD1(println, size_t(std::string str));
+    virtual size_t println(const char* s) { return println(std::string(s)); }
     virtual MOCK_METHOD1(println, size_t(char));
     virtual MOCK_METHOD2(println, size_t(int, int));
     virtual MOCK_METHOD0(println, size_t(void));
