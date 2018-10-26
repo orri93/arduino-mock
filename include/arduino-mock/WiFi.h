@@ -6,12 +6,21 @@
 #include <gmock/gmock.h>
 #include <stdint.h>
 
-typedef int wl_status_t;
+typedef enum {
+  WL_NO_SHIELD = 255,   // for compatibility with WiFi Shield library
+  WL_IDLE_STATUS = 0,
+  WL_NO_SSID_AVAIL = 1,
+  WL_SCAN_COMPLETED = 2,
+  WL_CONNECTED = 3,
+  WL_CONNECT_FAILED = 4,
+  WL_CONNECTION_LOST = 5,
+  WL_DISCONNECTED = 6
+} wl_status_t;
 
 class WiFi_ {
   public:
     wl_status_t begin(const char* ssid, const char *passphrase);
-    uint8_t status();
+    wl_status_t status();
     void on();  // turns on WiFi module
     void off();  // turns off WiFi module
     void connect();  // Attempts to connect to the WiFi network
@@ -39,7 +48,7 @@ class WiFiMock {
   public:
 
     virtual MOCK_METHOD2(begin, wl_status_t(const char* ssid, const char *passphrase));
-    virtual MOCK_METHOD0(status, uint8_t());
+    virtual MOCK_METHOD0(status, wl_status_t());
     virtual MOCK_METHOD0(on, void());
     virtual MOCK_METHOD0(off, void());
     virtual MOCK_METHOD0(connect, void());
