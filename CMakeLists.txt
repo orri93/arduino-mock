@@ -20,9 +20,12 @@ if(EXTERNAL_GMOCK)
     getExternalProject("gmock" "https://googlemock.googlecode.com/files/gmock-1.7.0.zip")
 endif()
 
-include_directories( arduino-mock
+include_directories(arduino-mock
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
 )
+
+include_directories(${CMAKE_SOURCE_DIR}/extern/googletest/googlemock/include)
+include_directories(${CMAKE_SOURCE_DIR}/extern/googletest/googletest/include)
 
 set_target_properties(arduino-mock PROPERTIES ENABLE_EXPORTS true)
 
