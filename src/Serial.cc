@@ -78,7 +78,7 @@ size_t Serial_::println(unsigned long num, int base) {
 }
 
 size_t Serial_::println(double num, int digits) {
-  return gSerialMock->println(num, digits);
+  return gSerialMock->println(static_cast<int>(num), digits);
 }
 
 size_t Serial_::println(void) {
