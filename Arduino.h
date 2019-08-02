@@ -102,6 +102,16 @@ void loop(void);
 } // extern "C"
 #endif
 
+uint16_t makeWord(uint16_t w);
+uint16_t makeWord(byte h, byte l);
+
+// WMath prototypes
+long random(long);
+long random(long, long);
+void randomSeed(unsigned long);
+long map(long, long, long, long, long);
+
+
 #include <gmock/gmock.h>
 
 #define UNUSED(expr) do { (void)(expr); } while (0)
