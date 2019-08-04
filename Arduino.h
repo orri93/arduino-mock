@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include "Serial.h"
 
+#include <dtostrf.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
