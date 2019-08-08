@@ -80,6 +80,8 @@ class Serial_ {
     uint8_t available();
     uint8_t read();
 
+    operator bool() const;
+
     static void flush();
 
     /*

@@ -113,5 +113,9 @@ uint8_t Serial_::read() {
   return gSerialMock->read();
 }
 
+Serial_::operator bool() const {
+  return gSerialMock->available();
+}
+
 // Preinstantiate Objects
 Serial_ Serial;
