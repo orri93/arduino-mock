@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include <gmock/gmock.h>
 
+#include "Stream.h"
+
 #define DEC 10
 #define HEX 16
 #define OCT 8
@@ -34,6 +36,8 @@ class SerialMock {
     MOCK_METHOD2(println, size_t(int, int));
     MOCK_METHOD0(println, size_t(void));
 
+    MOCK_METHOD0(availableForWrite, int(void));
+
     MOCK_METHOD1(begin, uint8_t(uint16_t));
 
     MOCK_METHOD0(available, uint8_t());
@@ -50,7 +54,7 @@ class SerialMock {
     */
 };
 
-class Serial_ {
+class Serial_ : public Stream {
   public:
     static size_t print(const char[]);
     static size_t print(char);
@@ -75,12 +79,22 @@ class Serial_ {
     size_t write(const char *str);
     size_t write(const uint8_t *buffer, size_t size);
 
+    int availableForWrite();
+
     uint8_t begin(uint32_t);
 
-    uint8_t available();
-    uint8_t read();
+    int available();
+    int read();
+    int peek();
+    void flush();
+
+    bool find(char *target);
+    bool find(uint8_t *target);
+    bool find(char *target, size_t length);
+    bool find(uint8_t *target, size_t length);
 
     operator bool() const;
+    operator Stream&();
 
     static void flush();
 
@@ -98,6 +112,7 @@ class Serial_ {
 };
 extern Serial_ Serial;
 
+SerialMock* serialMockPointer();
 SerialMock* serialMockInstance();
 void releaseSerialMock();
 

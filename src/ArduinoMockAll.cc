@@ -3,7 +3,7 @@
 #include "Arduino.cc"
 #include "EEPROM.cc"
 #include "Redbot.cc"
-#include "Serial.cc"
+#include "HardwareSerial.cc"
 #include "serialHelper.cc"
 #include "Spark.cc"
 #include "WiFi.cc"

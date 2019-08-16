@@ -5,7 +5,8 @@
 #define ARDUINO_H
 
 #include <stdint.h>
-#include "Serial.h"
+//#include "Serial.h"
+#include <HardwareSerial.h>
 
 #include <dtostrf.h>
 
@@ -44,6 +45,33 @@ extern "C" {
 #define radians(deg) ((deg)*DEG_TO_RAD)
 #define degrees(rad) ((rad)*RAD_TO_DEG)
 #define sq(x) ((x)*(x))
+
+#define interrupts() sei()
+#define noInterrupts() cli()
+
+#define clockCyclesPerMicrosecond() ( F_CPU / 1000000L )
+#define clockCyclesToMicroseconds(a) ( (a) / clockCyclesPerMicrosecond() )
+#define microsecondsToClockCycles(a) ( (a) * clockCyclesPerMicrosecond() )
+
+#define lowByte(w) ((uint8_t) ((w) & 0xff))
+#define highByte(w) ((uint8_t) ((w) >> 8))
+
+#define bitRead(value, bit) (((value) >> (bit)) & 0x01)
+#define bitSet(value, bit) ((value) |= (1UL << (bit)))
+#define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
+#define bitWrite(value, bit, bitvalue) (bitvalue ? bitSet(value, bit) : bitClear(value, bit))
+
+  // avr-libc defines _NOP() since 1.6.2
+#ifndef _NOP
+#define _NOP() do { __asm__ volatile ("nop"); } while (0)
+#endif
+
+typedef unsigned int word;
+
+#define bit(b) (1UL << (b))
+
+typedef bool boolean;
+typedef uint8_t byte;
 /*
  * From Arduino.h end
  *
@@ -72,9 +100,6 @@ extern "C" {
 
 #define digitalPinHasPWM(p)         ((p) == 9 || (p) == 10 || (p) == 11)
 
-
-typedef uint8_t boolean;
-typedef uint8_t byte;
 
 void init(void);
 
@@ -106,6 +131,8 @@ void loop(void);
 
 uint16_t makeWord(uint16_t w);
 uint16_t makeWord(byte h, byte l);
+
+#define word(...) makeWord(__VA_ARGS__)
 
 // WMath prototypes
 long random(long);
