@@ -8,6 +8,8 @@
 //#include "Serial.h"
 #include <HardwareSerial.h>
 
+#include "Pins.h"
+
 #include <dtostrf.h>
 
 #ifdef __cplusplus
@@ -96,8 +98,12 @@ typedef uint8_t byte;
 #define FALLING 2
 #define RISING 3
 
+#ifndef NUM_DIGITAL_PINS
 #define NUM_DIGITAL_PINS            20
+#endif
+#ifndef NUM_ANALOG_INPUTS
 #define NUM_ANALOG_INPUTS           6
+#endif
 #define analogInputToDigitalPin(p)  ((p < 6) ? (p) + 14 : -1)
 
 #define digitalPinHasPWM(p)         ((p) == 9 || (p) == 10 || (p) == 11)
