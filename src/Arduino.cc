@@ -41,7 +41,7 @@ unsigned long millis(void) {
   return arduinoMock->millis();
 }
 unsigned long micros(void) {
-  return 0;
+  return arduinoMock->micros();
 }
 void delay(unsigned long a) {
   arduinoMock->delay(a);
