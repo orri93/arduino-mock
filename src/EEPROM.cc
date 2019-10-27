@@ -2,6 +2,19 @@
 
 #include "EEPROM.h"
 
+#ifndef ARDUINO_MOCK_EEPROM
+EEPROMMock::EEPROMMock() {
+  Buffer = std::make_unique<uint8_t[]>(Size);
+}
+
+uint8_t EEPROMMock::read(int a) {
+  return Buffer[a];
+}
+void EEPROMMock::write(int a, uint8_t b) {
+  Buffer[a] = b;
+}
+#endif
+
 static EEPROMMock* p_EEPROMMock = NULL;
 EEPROMMock* EEPROMMockInstance() {
   if (!p_EEPROMMock) {
