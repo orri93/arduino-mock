@@ -13,6 +13,11 @@ uint8_t EEPROMMock::read(int a) {
 void EEPROMMock::write(int a, uint8_t b) {
   Buffer[a] = b;
 }
+void EEPROMMock::update(int a, uint8_t b) {
+  if (Buffer[a] != b) {
+    Buffer[a] = b;
+  }
+}
 #endif
 
 static EEPROMMock* p_EEPROMMock = NULL;
@@ -36,6 +41,10 @@ uint8_t EEPROM_::read(int a) {
 
 void EEPROM_::write(int a, uint8_t b) {
   p_EEPROMMock->write(a, b);
+}
+
+void EEPROM_::update(int a, uint8_t b) {
+  p_EEPROMMock->update(a, b);
 }
 
 // Preinstantiate Objects
