@@ -10,7 +10,7 @@
 
 #include "Pins.h"
 
-#include <dtostrf.h>
+#include <avr/dtostrf.h>
 
 #ifdef __cplusplus
 extern "C" {

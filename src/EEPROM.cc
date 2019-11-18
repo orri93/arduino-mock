@@ -1,6 +1,6 @@
 /** Implementation of EEPROM mock **/
 
-#include "EEPROM.h"
+#include "../EEPROM.h"
 
 #ifndef ARDUINO_MOCK_EEPROM
 EEPROMMock::EEPROMMock() {
