@@ -4,7 +4,9 @@
 #ifndef ARDUINO_H
 #define ARDUINO_H
 
+#ifndef ARDUINO_ARCH_AVR
 #define ARDUINO_ARCH_AVR
+#endif
 
 #include <stdint.h>
 //#include "Serial.h"
