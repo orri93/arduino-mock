@@ -8,6 +8,8 @@
 #define ARDUINO_ARCH_AVR
 #endif
 
+#include <cstring>
+
 #include <stdint.h>
 //#include "Serial.h"
 #include <HardwareSerial.h>
